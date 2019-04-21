@@ -15,9 +15,9 @@
                 </b-field>
 
                 <b-field label="Description">
-                    <b-input 
+                    <b-input
                         v-model="description"
-                        maxlength="200" 
+                        maxlength="200"
                         type="textarea"
                         placeholder="Description here...">
 
@@ -47,46 +47,46 @@
 import db from '@/api/firestore.js'
 
 export default {
-    props: [],
-    data() {
-        return {
-            title: "",
-            description: "",
-            pic: ""
-        }
-    },
-    methods: {
-        addTask() {
-            db
-            .collection('tasks')
-            .add({
-                title: this.title,
-                description: this.description,
-                pic: this.pic,
-                status: 'back-log',
-                createdAt: new Date,
-                updatedAt: new Date
-            })
-            .then(data => {
-                this.$parent.close()
-                this.title = ""
-                this.description = ""
-                this.pic = ""
-                this.$snackbar.open({
-                    duration: 6000,
-                    message: 'Successfully added taks',
-                    type: 'is-success',
-                    position: 'is-top',
-                    actionText: 'Ok',
-                    queue: false,
-                })
-            })
-            .catch(err => {
-                console.log(err);
-            })
-        }
+  props: [],
+  data () {
+    return {
+      title: '',
+      description: '',
+      pic: ''
     }
-    
+  },
+  methods: {
+    addTask () {
+      db
+        .collection('tasks')
+        .add({
+          title: this.title,
+          description: this.description,
+          pic: this.pic,
+          status: 'back-log',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        })
+        .then(data => {
+          this.$parent.close()
+          this.title = ''
+          this.description = ''
+          this.pic = ''
+          this.$snackbar.open({
+            duration: 6000,
+            message: 'Successfully added taks',
+            type: 'is-success',
+            position: 'is-top',
+            actionText: 'Ok',
+            queue: false
+          })
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  }
+
 }
 </script>
 

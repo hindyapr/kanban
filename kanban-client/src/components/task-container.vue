@@ -11,12 +11,11 @@
     </section>
 </template>
 
-
 <script>
 import task from '@/components/task.vue'
 
 export default {
-    props : ['title', 'data'],
-    components : {task}
+  props: ['title', 'data'],
+  components: { task }
 }
 </script>

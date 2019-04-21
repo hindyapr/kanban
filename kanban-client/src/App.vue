@@ -13,45 +13,44 @@
 </template>
 
 <script>
-import navbar from "@/components/navbar.vue"
-import taskContainer from "@/components/task-container.vue"
+import navbar from '@/components/navbar.vue'
+import taskContainer from '@/components/task-container.vue'
 import db from '@/api/firestore.js'
-
 
 export default {
   components: { navbar, taskContainer },
-  data() {
+  data () {
     return {
       tasks: [],
-      isLoading: true,
+      isLoading: true
     }
   },
-  created() {
+  created () {
     db
-    .collection("tasks")
-    .orderBy('createdAt')
-    .onSnapshot((querySnapshot) => {
-        this.tasks = [];
+      .collection('tasks')
+      .orderBy('createdAt')
+      .onSnapshot((querySnapshot) => {
+        this.tasks = []
         querySnapshot.forEach((doc) => {
-            console.log(doc);
-            this.tasks.push({id: doc.id, ...doc.data()});
-        });
-        this.isLoading= false;
-    });
+          console.log(doc)
+          this.tasks.push({ id: doc.id, ...doc.data() })
+        })
+        this.isLoading = false
+      })
   },
   computed: {
-    backLog() {
-      return this.tasks.filter(task => task.status === 'back-log');
+    backLog () {
+      return this.tasks.filter(task => task.status === 'back-log')
     },
-    toDo() {
-      return this.tasks.filter(task => task.status === 'to-do');
+    toDo () {
+      return this.tasks.filter(task => task.status === 'to-do')
     },
-    inProgress() {
-      return this.tasks.filter(task => task.status === 'in-progress');
+    inProgress () {
+      return this.tasks.filter(task => task.status === 'in-progress')
     },
-    done() {
-      return this.tasks.filter(task => task.status === 'done');
-    },
+    done () {
+      return this.tasks.filter(task => task.status === 'done')
+    }
   }
 }
 </script>

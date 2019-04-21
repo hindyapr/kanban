@@ -28,23 +28,23 @@
 </template>
 
 <script>
-import taskForm from "@/components/taskForm.vue";
-   
+import taskForm from '@/components/taskForm.vue'
+
 export default {
-    components: {
-            taskForm
-        },
-        data() {
-            return {
-                isComponentModalActive: false,
-                token: ''
-            }
-        },
-        methods : {
-            successLogedIn(token) {
-                this.token = token;
-            }
-        }
+  components: {
+    taskForm
+  },
+  data () {
+    return {
+      isComponentModalActive: false,
+      token: ''
+    }
+  },
+  methods: {
+    successLogedIn (token) {
+      this.token = token
+    }
+  }
 }
 </script>
 
